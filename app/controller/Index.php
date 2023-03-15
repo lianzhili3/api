@@ -2,6 +2,7 @@
 namespace app\controller;
 
 use app\BaseController;
+use app\Request;
 
 class Index extends BaseController
 {
@@ -13,5 +14,11 @@ class Index extends BaseController
     public function hello($name = 'ThinkPHP6')
     {
         return 'hello,' . $name;
+    }
+    public function test(Request $request)
+    {
+        $data = $request->param();
+        return '刚才请求的数据是：'  . json_encode($data,true);
+
     }
 }
