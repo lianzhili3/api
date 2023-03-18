@@ -2,7 +2,11 @@
 namespace app\controller;
 
 use app\BaseController;
+use app\model\Auth as AuthModel;
 use app\Request;
+use think\log;
+
+use app\model\student as IndexModel;
 
 class Index extends BaseController
 {
@@ -15,10 +19,20 @@ class Index extends BaseController
     {
         return 'hello,' . $name;
     }
+
     public function test(Request $request)
     {
         $data = $request->param();
         return '刚才请求的数据是：'  . json_encode($data,true);
 
+    }
+
+    public function getinfo($id)
+    {
+//        return phpinfo();
+        $model = new IndexModel();
+        $info = $model->testredis($id);
+        $info = ['code'=>100, 'res'=>$info];
+        return json_encode($info);
     }
 }
