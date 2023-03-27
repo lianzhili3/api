@@ -27,7 +27,7 @@ class student extends Model
     public function testredis($id){
         $redis = new Redis(Config::get('cache.stores.redis'));
         $redis->set('pasawu', 'test');
-        $pasa = $redis->get('one');
+        $pasa = $redis->get('pasawu');
         return $pasa;
     }
 
